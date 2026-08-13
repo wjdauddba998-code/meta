@@ -103,3 +103,236 @@ button{font:inherit}.deck{width:100vw;height:100vh;position:relative;background:
   .hero > .hero-tags,.hero > .scroll-hint{margin-left:var(--content-x)}
   .source-note,.smallprint{left:var(--content-x)}
 }
+
+/* v7: final editorial alignment pass
+   - headline + supporting copy share one left edge
+   - repeated content follows one content column
+   - diagram/metric elements keep intentional centering */
+:root{
+  --deck-width:min(1180px,84vw);
+  --deck-left:8vw;
+  --copy-gap:20px;
+  --section-gap:4.8vh;
+}
+
+/* One page grid for every slide */
+.slide{
+  padding-left:var(--deck-left);
+  padding-right:var(--deck-left);
+}
+
+.slide > .section-kicker,
+.slide > .eyebrow,
+.slide > h1,
+.slide > h2,
+.slide > .lead,
+.slide > .promise-copy,
+.slide > .hero-tags,
+.slide > .split,
+.slide > .toc-grid,
+.slide > .three-cards,
+.slide > .flow,
+.slide > .pill-row,
+.slide > .compare,
+.slide > .steps-grid,
+.slide > .benefit-row,
+.slide > .fit-grid,
+.slide > .platform-chips,
+.slide > .platform-note,
+.slide > .strategy-timeline,
+.slide > .callout,
+.slide > .metric-grid,
+.slide > .process-line,
+.slide > .support-grid,
+.slide > .creative-grid,
+.slide > .check-grid,
+.slide > .promise-path,
+.slide > .closing-content{
+  width:100%;
+  max-width:1180px;
+  margin-left:0;
+  margin-right:0;
+}
+
+/* Main headline system: left edge and vertical rhythm are identical page-to-page */
+.slide > .section-kicker,
+.slide > .eyebrow{
+  text-align:left;
+  margin:0 0 14px;
+}
+.slide > h1,
+.slide > h2{
+  text-align:left;
+  margin:0;
+  max-width:1180px;
+}
+.slide > .lead,
+.slide > .lead.compact,
+.slide > .lead.center,
+.slide > .promise-copy{
+  text-align:left;
+  margin:var(--copy-gap) 0 0;
+  max-width:1020px;
+}
+
+/* Reference headline stays on one line on wide screens while keeping the same starting point */
+.single-line-title{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  text-align:left!important;
+}
+
+/* Main content starts from the same left column after the headline area */
+.slide > .split,
+.slide > .toc-grid,
+.slide > .three-cards,
+.slide > .flow,
+.slide > .compare,
+.slide > .steps-grid,
+.slide > .benefit-row,
+.slide > .fit-grid,
+.slide > .platform-chips,
+.slide > .strategy-timeline,
+.slide > .metric-grid,
+.slide > .process-line,
+.slide > .support-grid,
+.slide > .creative-grid,
+.slide > .check-grid,
+.slide > .promise-path{
+  margin-top:var(--section-gap);
+}
+.slide > .platform-note,
+.slide > .callout{
+  margin-left:0;
+}
+
+/* Hero: keep all copy and supporting tags on the same left guide */
+.hero > .eyebrow,
+.hero > h1,
+.hero > .lead{
+  width:100%;
+  max-width:1050px;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
+}
+.hero > .hero-tags{
+  margin:30px 0 0;
+  justify-content:flex-start;
+}
+.hero > .scroll-hint{
+  left:var(--deck-left);
+  margin-left:0;
+  text-align:left;
+}
+
+/* Cards: editorial text is consistently left aligned */
+.toc-card,
+.glass-card,
+.benefit,
+.fit-card,
+.step-card,
+.compare-card,
+.strategy-timeline>div:not(.line),
+.process-line>div,
+.support-grid>div,
+.creative-card,
+.check-grid>div,
+.metric-card,
+.platform-note,
+.bullet-stack{
+  text-align:left;
+}
+
+/* Consistent text rhythm inside card families */
+.toc-card p,
+.glass-card p,
+.benefit p,
+.fit-card p,
+.step-card p,
+.strategy-timeline p,
+.support-grid p,
+.creative-card p,
+.check-grid p,
+.metric-sub,
+.platform-note p{
+  line-height:1.58;
+}
+.toc-card b,
+.glass-card b,
+.benefit b,
+.fit-card b,
+.step-card b,
+.strategy-timeline b,
+.support-grid b,
+.creative-card b,
+.check-grid b{
+  line-height:1.35;
+}
+
+/* Components that read more naturally centered stay centered */
+.flow-node,
+.metric-grid>div,
+.catalog-all,
+.catalog-seg{
+  text-align:center;
+}
+.pill-row{
+  justify-content:flex-start;
+  margin:28px 0 0;
+}
+
+/* Compare / process / checklist: align top edges and copy starts */
+.compare{align-items:stretch}
+.compare-card{display:flex;flex-direction:column;justify-content:flex-start}
+.process-line{align-items:stretch}
+.process-line>div{height:100%}
+.fit-grid,.creative-grid,.check-grid,.support-grid,.three-cards,.benefit-row,.steps-grid{align-items:stretch}
+.fit-card,.creative-card,.check-grid>div,.support-grid>div,.glass-card,.benefit,.step-card{height:100%}
+
+/* Platform area */
+.platform-chips{justify-content:flex-start}
+.platform-note{max-width:1000px}
+
+/* Footnotes lock to the same page guide */
+.source-note,
+.smallprint{
+  left:var(--deck-left);
+  text-align:left;
+}
+
+/* Closing page follows the same title/copy grid */
+.closing > .eyebrow,
+.closing > h2,
+.closing > .lead,
+.closing > .closing-content{
+  width:100%;
+  max-width:1180px;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
+}
+.closing > .lead{max-width:900px;margin-top:20px}
+.closing-content{margin-top:30px}
+.cta-box{margin-left:0}
+
+@media(max-width:1100px){
+  :root{--deck-left:7vw}
+  .single-line-title{white-space:normal}
+}
+
+@media(max-width:900px){
+  :root{--deck-left:7vw;--section-gap:34px}
+  .slide{padding-left:var(--deck-left);padding-right:var(--deck-left)}
+  .slide > .section-kicker,.slide > .eyebrow,.slide > h1,.slide > h2,.slide > .lead,.slide > .promise-copy,
+  .slide > .hero-tags,.slide > .split,.slide > .toc-grid,.slide > .three-cards,.slide > .flow,.slide > .pill-row,
+  .slide > .compare,.slide > .steps-grid,.slide > .benefit-row,.slide > .fit-grid,.slide > .platform-chips,
+  .slide > .platform-note,.slide > .strategy-timeline,.slide > .callout,.slide > .metric-grid,.slide > .process-line,
+  .slide > .support-grid,.slide > .creative-grid,.slide > .check-grid,.slide > .promise-path,.slide > .closing-content{
+    width:100%;max-width:none;margin-left:0;margin-right:0;
+  }
+  .hero > .scroll-hint,.source-note,.smallprint{left:var(--deck-left)}
+  .pill-row{justify-content:flex-start}
+}
