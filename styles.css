@@ -23,3 +23,83 @@ button{font:inherit}.deck{width:100vw;height:100vh;position:relative;background:
 .closing-content{display:grid;grid-template-columns:.8fr 1.2fr;gap:38px;align-items:center;margin-top:28px}.business-card-wrap{position:relative;z-index:2;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 20px 60px rgba(24,39,75,.13)}.business-card-wrap img{display:block;width:100%;height:auto}.closing-orb{opacity:.16;right:5vw}.closing .lead{margin-left:auto;margin-right:auto;width:min(1180px,84vw)}.closing .smallprint{left:8vw}
 @media(max-width:1100px){.single-line-title{font-size:clamp(27px,3.25vw,45px)}}
 @media(max-width:900px){.single-line-title{white-space:normal;font-size:38px}.lp-logo{width:92px;height:28px}.closing-content{grid-template-columns:1fr}.business-card-wrap{max-width:680px}.slide > .section-kicker,.slide > .eyebrow,.slide > h1,.slide > h2,.slide > .lead,.slide > .split,.slide > .toc-grid,.slide > .three-cards,.slide > .flow,.slide > .pill-row,.slide > .compare,.slide > .steps-grid,.slide > .benefit-row,.slide > .fit-grid,.slide > .platform-chips,.slide > .platform-note,.slide > .strategy-timeline,.slide > .callout,.slide > .metric-grid,.slide > .process-line,.slide > .support-grid,.slide > .creative-grid,.slide > .check-grid,.slide > .promise-path,.slide > .promise-copy,.slide > .closing-content{width:86vw}}
+
+/* v4: tighter, more natural LinkPrice × Meta lockup */
+.brand-lockup{gap:5px;letter-spacing:0}
+.lp-logo{width:92px;height:30px;object-fit:contain;object-position:left center;margin-right:-2px}
+.brand-lockup .x{font-size:14px;line-height:1;opacity:.42;margin:0 1px}
+.meta-word{font-size:18px;line-height:1;font-weight:750;margin-left:0}
+
+/* v6: page-wide text alignment system
+   Visual components keep their existing size/position; only text baselines/columns are normalized. */
+:root{--content-width:min(1180px,84vw);--content-x:8vw}
+
+/* Primary copy on every slide shares one left column */
+.slide > .section-kicker,
+.slide > .eyebrow,
+.slide > h1,
+.slide > h2,
+.slide > .lead,
+.slide > .promise-copy{
+  width:var(--content-width);
+  max-width:none;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+.slide > .section-kicker,
+.slide > .eyebrow{margin-top:0;margin-bottom:16px}
+.slide > h1,
+.slide > h2{margin-top:0;margin-bottom:0}
+.slide > .lead{margin-top:24px;margin-bottom:0}
+.slide > .lead.compact{max-width:none}
+
+/* Footnotes/source copy use the same left edge */
+.source-note{left:var(--content-x);text-align:left}
+.smallprint{left:var(--content-x);text-align:left}
+
+/* Keep the one-line reference headline aligned without shifting its start point */
+.single-line-title{
+  width:var(--content-width)!important;
+  max-width:none!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:left!important;
+}
+
+/* Hero and closing copy follow the exact same text column */
+.hero > .eyebrow,
+.hero > h1,
+.hero > .lead,
+.closing > h2,
+.closing > .lead{
+  width:var(--content-width);
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+.hero > .hero-tags,
+.hero > .scroll-hint{
+  margin-left:var(--content-x);
+}
+
+/* Normalize text alignment inside repeated text blocks only; do not move the blocks themselves */
+.toc-card,.glass-card,.benefit,.fit-card,.step-card,
+.compare-card,.strategy-timeline>div:not(.line),
+.process-line>div,.support-grid>div,.creative-card,.check-grid>div{
+  text-align:left;
+}
+.metric-card{text-align:left}
+.platform-note{text-align:left}
+.bullet-stack{text-align:left}
+
+/* Preserve intentionally centered explanatory/diagram text */
+.flow-node,.metric-grid>div{ text-align:center }
+
+@media(max-width:900px){
+  :root{--content-width:86vw;--content-x:7vw}
+  .slide > .section-kicker,.slide > .eyebrow,.slide > h1,.slide > h2,.slide > .lead,.slide > .promise-copy,
+  .hero > .eyebrow,.hero > h1,.hero > .lead,.closing > h2,.closing > .lead{width:var(--content-width)}
+  .hero > .hero-tags,.hero > .scroll-hint{margin-left:var(--content-x)}
+  .source-note,.smallprint{left:var(--content-x)}
+}
